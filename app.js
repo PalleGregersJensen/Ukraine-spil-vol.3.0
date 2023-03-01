@@ -4,8 +4,14 @@ window.addEventListener("load", start);
 let points = 0;
 let lives = 0;
 
+//function ready() {
+//  console.log("JavaScript ready!");
+//  document.querySelector("#btn_start").addEventListener("click", start);
+//}
+
 function start() {
   console.log("JavaScript kører!");
+  document.querySelector("#sound_war").play();
 
   // nulstil point og liv
   points = 0;
@@ -53,6 +59,8 @@ function start() {
 
 function clickParatrooper() {
   console.log("Click paratrooper");
+  document.querySelector("#sound_gunshot").currentTime = 0;
+  document.querySelector("#sound_gunshot").play();
   // Forhindrer gentagne clicks
   document
     .querySelector("#paratrooper_container")
@@ -76,6 +84,8 @@ function clickParatrooper() {
 function clickUsContainer() {
   console.log("Click US Container");
   // Forhindr gentagne clicks
+  document.querySelector("#sound_explosion").currentTime = 0;
+  document.querySelector("#sound_explosion").play();
   document
     .querySelector("#us-container_container")
     .removeEventListener("click", clickUsContainer);
@@ -97,6 +107,8 @@ function clickUsContainer() {
 
 function clickEuContainer() {
   console.log("Click EU Container");
+  document.querySelector("#sound_explosion").currentTime = 0;
+  document.querySelector("#sound_explosion").play();
   // Forhindr gentagne clicks
   document
     .querySelector("#eu-container_container")
@@ -203,6 +215,8 @@ function euContainerGone() {
 
 function clickMissile() {
   console.log("Click missile");
+  document.querySelector("#sound_explosion").currentTime = 0;
+  document.querySelector("#sound_explosion").play();
   // Forhindr gentagne clicks
   document
     .querySelector("#missile_container")
@@ -251,6 +265,8 @@ function missileGone() {
 
 function clickEmergencyKit() {
   console.log("Click emergency-kit");
+  document.querySelector("#sound_explosion_emergency-kit").currentTime = 0;
+  document.querySelector("#sound_explosion_emergency-kit").play();
   // Forhindr gentagne clicks
   document
     .querySelector("#emergency-kit_container")
@@ -308,7 +324,7 @@ function incrementPoints() {
   points++;
   console.log("har nu " + points + " point");
   displayPoints();
-  if (points >= 10) {
+  if (points >= 50) {
     levelComplete();
   } else {
     showDecrementedLives;
@@ -351,10 +367,31 @@ function showDecrementedLives() {
 
 function gameOver() {
   console.log("Game over");
+  document.querySelector("#sound_gameOver").play();
   document.querySelector("#game_over").classList.remove("hidden");
+  stopGame();
 }
 
 function levelComplete() {
   console.log("You win");
+  document.querySelector("#sound_levelComplete").play();
   document.querySelector("#level_complete").classList.remove("hidden");
+  stopGame();
+}
+
+function stopGame() {
+  // Stop animationer
+  document.querySelector("#sound_war").pause();
+  document.querySelector("#paratrooper_container").classList.remove("falling");
+  document.querySelector("#us-container_container").classList.remove("falling");
+  document.querySelector("#eu-container_container").classList.remove("falling");
+  document.querySelector("#missile_container").classList.remove("falling-diagonal");
+  document.querySelector("#emergency-kit_container").classList.remove("falling");
+
+  // Fjern click
+  document.querySelector("#paratrooper_container").removeEventListener("click", clickParatrooper);
+  document.querySelector("#us-container_container").removeEventListener("click", clickUsContainer);
+  document.querySelector("#eu-container_container").removeEventListener("click", clickEuContainer);
+  document.querySelector("#missile_container").removeEventListener("click", clickMissile);
+  document.querySelector("#emergency-kit_container").removeEventListener("click", clickEmergencyKit);
 }
