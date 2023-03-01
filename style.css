@@ -25,7 +25,9 @@ h2 {
     grid-area: 1 /1;
     background-image: url(images/background-image.png);
     background-position: center; 
-    object-fit: cover;
+    /* object-fit: cover; */
+    background-size: cover;
+    grid-template: 100% / 100%;
 }
 
 #game_elements {
@@ -99,8 +101,6 @@ h2 {
     top: 0;
     left: 30vw;
     rotate: 155deg;
-
-
 }
 
 #missile_sprite {

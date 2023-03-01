@@ -22,9 +22,20 @@ function start() {
   document.querySelector("#missile_container").classList.add("position5");
   document.querySelector("#emergency-kit_container").classList.add("falling");
   document.querySelector("#emergency-kit_container").classList.add("position4");
+
+
+  //Mist liv, hvis der ikke klikkes på missile eller paratrooper
+  document.querySelector("#paratrooper_container").addEventListener("animationiteration", decrementLives)
+  document.querySelector("#missile_container").addEventListener("animationiteration", decrementLives);  
+  
+  //Få automatisk point, når us-container, eu-container og emergencykit lander på jorden
+  document.querySelector("#us-container_container").addEventListener("animationiteration", incrementPoints);
+  document.querySelector("#eu-container_container").addEventListener("animationiteration", incrementPoints);
+  document.querySelector("#emergency-kit_container").addEventListener("animationiteration", incrementPoints);
+
+
   // Registrer click
-  document
-    .querySelector("#paratrooper_container")
+  document.querySelector("#paratrooper_container")
     .addEventListener("click", clickParatrooper);
   document
     .querySelector("#us-container_container")
@@ -42,18 +53,18 @@ function start() {
 
 function clickParatrooper() {
   console.log("Click paratrooper");
-  // Forhindr gentagne clicks
+  // Forhindrer gentagne clicks
   document
     .querySelector("#paratrooper_container")
     .removeEventListener("click", clickParatrooper);
 
-  // Stop coin container
+  // Stop paratrooper container
   document.querySelector("#paratrooper_container").classList.add("paused");
 
-  // sæt forsvind-animation på coin
+  // sæt forsvind-animation på paratrooper
   document.querySelector("#paratrooper_sprite").classList.add("zoom_out");
 
-  // når forsvind-animation er færdig: coinGone
+  // når forsvind-animation er færdig: paratrooperGone
   document
     .querySelector("#paratrooper_container")
     .addEventListener("animationend", paratrooperGone);
@@ -69,13 +80,13 @@ function clickUsContainer() {
     .querySelector("#us-container_container")
     .removeEventListener("click", clickUsContainer);
 
-  // Stop coin container
+  // Stop us-container
   document.querySelector("#us-container_container").classList.add("paused");
 
-  // sæt forsvind-animation på coin
+  // sæt forsvind-animation på us-container
   document.querySelector("#us-container_sprite").classList.add("zoom_out");
 
-  // når forsvind-animation er færdig: coinGone
+  // når forsvind-animation er færdig: us-containerGone
   document
     .querySelector("#us-container_container")
     .addEventListener("animationend", usContainerGone);
@@ -224,16 +235,10 @@ function missileGone() {
   document.querySelector("#missile_container").classList.remove("paused");
 
   // genstart falling-diagonal animation
-  document
-    .querySelector("#missile_container")
-    .classList.remove("falling-diagonal");
+  document.querySelector("#missile_container").classList.remove("falling-diagonal");
   document.querySelector("#missile_container").offsetWidth;
-  document
-    .querySelector("#missile_container")
-    .classList.add("falling-diagonal");
-  document
-    .querySelector("#missile_container")
-    .classList.remove("position5", "position6");
+  document.querySelector("#missile_container").classList.add("falling-diagonal");
+  document.querySelector("#missile_container").classList.remove("position5", "position6");
 
   let pos = Math.floor(Math.random() * 2) + 5;
   document.querySelector("#missile_container").classList.add("position" + pos);
