@@ -38,9 +38,9 @@ function resetLives() {
   document
     .querySelector("#ukraine-flag3")
     .classList.remove("ukraine_flag_no_visibility");
-  document.querySelector("#ukraine-flag1").classList.add("ukraine_flag");
-  document.querySelector("#ukraine-flag2").classList.add("ukraine_flag");
-  document.querySelector("#ukraine-flag3").classList.add("ukraine_flag");
+  document.querySelector("#ukraine-flag1").classList.add("ukraine-flag");
+  document.querySelector("#ukraine-flag2").classList.add("ukraine-flag");
+  document.querySelector("#ukraine-flag3").classList.add("ukraine-flag");
 }
 
 function resetPoints() {
@@ -65,7 +65,7 @@ function start() {
   // Registrer click
     
   // Registrer når bunden rammes
-}    
+   
 
   // nulstil point og liv
   points = 0;
@@ -123,8 +123,9 @@ function start() {
   document
     .querySelector("#emergency-kit_container")
     .addEventListener("click", clickEmergencyKit);
-
-
+}
+  
+  
 function clickParatrooper() {
   console.log("Click paratrooper");
   document.querySelector("#sound_gunshot").currentTime = 0;
