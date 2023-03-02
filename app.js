@@ -1,21 +1,78 @@
 "use strict";
-window.addEventListener("load", start);
+window.addEventListener("load", ready);
 
 let points = 0;
 let lives = 0;
 
-//function ready() {
-//  console.log("JavaScript ready!");
-//  document.querySelector("#btn_start").addEventListener("click", start);
-//}
+function ready() {
+  console.log("JavaScript ready!");
+  document.querySelector("#btn_start").addEventListener("click", start);
+  document.querySelector("#btn_restart").addEventListener("click", start);
+  document.querySelector("#btn_go_to_start").addEventListener("click", showStartScreen);
+}
+
+function showGameScreen() {
+  // Skjul startskærm, game over og level complete
+  document.querySelector("#start").classList.add("hidden");
+  document.querySelector("#game_over").classList.add("hidden");
+  document.querySelector("#level_complete").classList.add("hidden");
+}
+
+function showStartScreen() {
+  // fjern hidden fra startskærm og tilføj til game over og level complete
+  document.querySelector("#start").classList.remove("hidden");
+  document.querySelector("#game_over").classList.add("hidden");
+  document.querySelector("#level_complete").classList.add("hidden");
+}
+
+function resetLives() {
+  // sæt lives til 3
+  lives = 3;
+  //nulstil visning af liv (hjerte vi ser)
+  document
+    .querySelector("#ukraine-flag1")
+    .classList.remove("ukraine_flag_no_visibility");
+  document
+    .querySelector("#ukraine-flag2")
+    .classList.remove("ukraine_flag_no_visibility");
+  document
+    .querySelector("#ukraine-flag3")
+    .classList.remove("ukraine_flag_no_visibility");
+  document.querySelector("#ukraine-flag1").classList.add("ukraine_flag");
+  document.querySelector("#ukraine-flag2").classList.add("ukraine_flag");
+  document.querySelector("#ukraine-flag3").classList.add("ukraine_flag");
+}
+
+function resetPoints() {
+  // nulstil point
+  points = 0;
+  // nulstil vising af point
+  displayPoints();
+}
 
 function start() {
   console.log("JavaScript kører!");
+
+  resetLives();
+  resetPoints();
+  showGameScreen();
+
+  // Start baggrundsmusik
   document.querySelector("#sound_war").play();
+
+  // start alle animationer
+    
+  // Registrer click
+    
+  // Registrer når bunden rammes
+}    
 
   // nulstil point og liv
   points = 0;
   lives = 3;
+
+  // skjul startskærm
+  document.querySelector("#start").classList.add("hidden");
 
   // Start animationer
   document.querySelector("#paratrooper_container").classList.add("falling");
@@ -24,24 +81,35 @@ function start() {
   document.querySelector("#us-container_container").classList.add("position2");
   document.querySelector("#eu-container_container").classList.add("falling");
   document.querySelector("#eu-container_container").classList.add("position3");
-  document.querySelector("#missile_container").classList.add("falling-diagonal");
+  document
+    .querySelector("#missile_container")
+    .classList.add("falling-diagonal");
   document.querySelector("#missile_container").classList.add("position5");
   document.querySelector("#emergency-kit_container").classList.add("falling");
   document.querySelector("#emergency-kit_container").classList.add("position4");
 
-
   //Mist liv, hvis der ikke klikkes på missile eller paratrooper
-  document.querySelector("#paratrooper_container").addEventListener("animationiteration", decrementLives)
-  document.querySelector("#missile_container").addEventListener("animationiteration", decrementLives);  
-  
-  //Få automatisk point, når us-container, eu-container og emergencykit lander på jorden
-  document.querySelector("#us-container_container").addEventListener("animationiteration", incrementPoints);
-  document.querySelector("#eu-container_container").addEventListener("animationiteration", incrementPoints);
-  document.querySelector("#emergency-kit_container").addEventListener("animationiteration", incrementPoints);
+  document
+    .querySelector("#paratrooper_container")
+    .addEventListener("animationiteration", decrementLives);
+  document
+    .querySelector("#missile_container")
+    .addEventListener("animationiteration", decrementLives);
 
+  //Få automatisk point, når us-container, eu-container og emergencykit lander på jorden
+  document
+    .querySelector("#us-container_container")
+    .addEventListener("animationiteration", incrementPoints);
+  document
+    .querySelector("#eu-container_container")
+    .addEventListener("animationiteration", incrementPoints);
+  document
+    .querySelector("#emergency-kit_container")
+    .addEventListener("animationiteration", incrementPoints);
 
   // Registrer click
-  document.querySelector("#paratrooper_container")
+  document
+    .querySelector("#paratrooper_container")
     .addEventListener("click", clickParatrooper);
   document
     .querySelector("#us-container_container")
@@ -55,7 +123,7 @@ function start() {
   document
     .querySelector("#emergency-kit_container")
     .addEventListener("click", clickEmergencyKit);
-}
+
 
 function clickParatrooper() {
   console.log("Click paratrooper");
@@ -81,6 +149,36 @@ function clickParatrooper() {
   incrementPoints();
 }
 
+function paratrooperGone() {
+  // fjern event der bringer os herind
+  document
+    .querySelector("#paratrooper_container")
+    .removeEventListener("animationend", paratrooperGone);
+
+  // fjern forsvind-animation
+  document.querySelector("#paratrooper_sprite").classList.remove("zoom_out");
+
+  // fjern pause
+  document.querySelector("#paratrooper_container").classList.remove("paused");
+
+  // genstart falling animation
+  document.querySelector("#paratrooper_container").classList.remove("falling");
+  document.querySelector("#paratrooper_container").offsetWidth;
+  document.querySelector("#paratrooper_container").classList.add("falling");
+  document
+    .querySelector("#paratrooper_container")
+    .classList.remove("position1", "position2", "position3", "position4");
+  let pos = Math.floor(Math.random() * 4) + 1;
+  document
+    .querySelector("#paratrooper_container")
+    .classList.add("position" + pos);
+
+  // gør det muligt at klikke på paratrooper igen
+  document
+    .querySelector("#paratrooper_container")
+    .addEventListener("click", clickParatrooper);
+}
+
 function clickUsContainer() {
   console.log("Click US Container");
   // Forhindr gentagne clicks
@@ -103,56 +201,6 @@ function clickUsContainer() {
 
   // Mist liv
   decrementLives();
-}
-
-function clickEuContainer() {
-  console.log("Click EU Container");
-  document.querySelector("#sound_explosion").currentTime = 0;
-  document.querySelector("#sound_explosion").play();
-  // Forhindr gentagne clicks
-  document
-    .querySelector("#eu-container_container")
-    .removeEventListener("click", clickEuContainer);
-
-  // Stop eu-container
-  document.querySelector("#eu-container_container").classList.add("paused");
-
-  // sæt forsvind-animation på eu-container
-  document.querySelector("#eu-container_sprite").classList.add("zoom_out");
-
-  // når forsvind-animation er færdig: euContainerGone
-  document
-    .querySelector("#eu-container_container")
-    .addEventListener("animationend", euContainerGone);
-
-  // Mist liv
-  decrementLives();
-}
-
-function paratrooperGone() {
-  // fjern event der bringer os herind
-  document
-    .querySelector("#paratrooper_container")
-    .removeEventListener("animationend", paratrooperGone);
-
-  // fjern forsvind-animation
-  document.querySelector("#paratrooper_sprite").classList.remove("zoom_out");
-
-  // fjern pause
-  document.querySelector("#paratrooper_container").classList.remove("paused");
-
-  // genstart falling animation
-  document.querySelector("#paratrooper_container").classList.remove("falling");
-  document.querySelector("#paratrooper_container").offsetWidth;
-  document.querySelector("#paratrooper_container").classList.add("falling");
-  document.querySelector("#paratrooper_container").classList.remove("position1", "position2", "position3", "position4");
-  let pos = Math.floor(Math.random() * 4) + 1;
-  document.querySelector("#paratrooper_container").classList.add("position" + pos);
-
-  // gør det muligt at klikke på paratrooper igen
-  document
-    .querySelector("#paratrooper_container")
-    .addEventListener("click", clickParatrooper);
 }
 
 function usContainerGone() {
@@ -184,6 +232,30 @@ function usContainerGone() {
   document
     .querySelector("#us-container_container")
     .addEventListener("click", clickUsContainer);
+}
+
+function clickEuContainer() {
+  console.log("Click EU Container");
+  document.querySelector("#sound_explosion").currentTime = 0;
+  document.querySelector("#sound_explosion").play();
+  // Forhindr gentagne clicks
+  document
+    .querySelector("#eu-container_container")
+    .removeEventListener("click", clickEuContainer);
+
+  // Stop eu-container
+  document.querySelector("#eu-container_container").classList.add("paused");
+
+  // sæt forsvind-animation på eu-container
+  document.querySelector("#eu-container_sprite").classList.add("zoom_out");
+
+  // når forsvind-animation er færdig: euContainerGone
+  document
+    .querySelector("#eu-container_container")
+    .addEventListener("animationend", euContainerGone);
+
+  // Mist liv
+  decrementLives();
 }
 
 function euContainerGone() {
