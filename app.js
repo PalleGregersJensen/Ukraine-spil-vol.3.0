@@ -475,7 +475,7 @@ function stopGame() {
     .querySelector("#emergency-kit_container")
     .removeEventListener("click", clickEmergencyKit);
 
-  //Mist liv, hvis der ikke klikkes på missile eller paratrooper
+  //Stop for mist liv, hvis der ikke klikkes på missile eller paratrooper
   document
     .querySelector("#paratrooper_container")
     .removeEventListener("animationiteration", decrementLives);
@@ -483,7 +483,7 @@ function stopGame() {
     .querySelector("#missile_container")
     .removeEventListener("animationiteration", decrementLives);
 
-  //Få automatisk point, når us-container, eu-container og emergencykit lander på jorden
+  //Stop automatisk point, når us-container, eu-container og emergencykit lander på jorden
   document
     .querySelector("#us-container_container")
     .removeEventListener("animationiteration", incrementPoints);
