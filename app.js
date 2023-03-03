@@ -58,14 +58,7 @@ function start() {
   showGameScreen();
 
   // Start baggrundsmusik
-  document.querySelector("#sound_war").play();
-
-  // start alle animationer
-    
-  // Registrer click
-    
-  // Registrer når bunden rammes
-   
+  document.querySelector("#sound_war").play();   
 
   // nulstil point og liv
   points = 0;
@@ -458,13 +451,46 @@ function stopGame() {
   document.querySelector("#paratrooper_container").classList.remove("falling");
   document.querySelector("#us-container_container").classList.remove("falling");
   document.querySelector("#eu-container_container").classList.remove("falling");
-  document.querySelector("#missile_container").classList.remove("falling-diagonal");
-  document.querySelector("#emergency-kit_container").classList.remove("falling");
+  document
+    .querySelector("#missile_container")
+    .classList.remove("falling-diagonal");
+  document
+    .querySelector("#emergency-kit_container")
+    .classList.remove("falling");
 
   // Fjern click
-  document.querySelector("#paratrooper_container").removeEventListener("click", clickParatrooper);
-  document.querySelector("#us-container_container").removeEventListener("click", clickUsContainer);
-  document.querySelector("#eu-container_container").removeEventListener("click", clickEuContainer);
-  document.querySelector("#missile_container").removeEventListener("click", clickMissile);
-  document.querySelector("#emergency-kit_container").removeEventListener("click", clickEmergencyKit);
+  document
+    .querySelector("#paratrooper_container")
+    .removeEventListener("click", clickParatrooper);
+  document
+    .querySelector("#us-container_container")
+    .removeEventListener("click", clickUsContainer);
+  document
+    .querySelector("#eu-container_container")
+    .removeEventListener("click", clickEuContainer);
+  document
+    .querySelector("#missile_container")
+    .removeEventListener("click", clickMissile);
+  document
+    .querySelector("#emergency-kit_container")
+    .removeEventListener("click", clickEmergencyKit);
+
+  //Mist liv, hvis der ikke klikkes på missile eller paratrooper
+  document
+    .querySelector("#paratrooper_container")
+    .removeEventListener("animationiteration", decrementLives);
+  document
+    .querySelector("#missile_container")
+    .removeEventListener("animationiteration", decrementLives);
+
+  //Få automatisk point, når us-container, eu-container og emergencykit lander på jorden
+  document
+    .querySelector("#us-container_container")
+    .removeEventListener("animationiteration", incrementPoints);
+  document
+    .querySelector("#eu-container_container")
+    .removeEventListener("animationiteration", incrementPoints);
+  document
+    .querySelector("#emergency-kit_container")
+    .removeEventListener("animationiteration", incrementPoints);
 }
