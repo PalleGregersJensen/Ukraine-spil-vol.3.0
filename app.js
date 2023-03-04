@@ -50,15 +50,47 @@ function resetPoints() {
   displayPoints();
 }
 
+function resetPositions() {
+  console.log ("reset positions")
+document
+  .querySelector("#paratrooper_container")
+  .classList.remove("falling", "position1", "position2", "position3", "position4");
+document
+  .querySelector("#emergency-kit_container")
+  .classList.remove("falling","position1","position2","position3","position4");
+document
+  .querySelector("#us-container_container")
+  .classList.remove("falling", "position1", "position2", "position3", "position4");
+document
+  .querySelector("#eu-container_container")
+  .classList.remove("falling", "position1", "position2", "position3", "position4");
+document
+  .querySelector("#missile_container")
+  .classList.remove("falling-diagonal", "position5", "position6");
+//document.querySelector("#paratrooper_container").classList.add("position1");
+//document.querySelector("#emergency-kit_container").classList.add("position2");
+//document.querySelector("#us-container_container").classList.add("position3");
+//document.querySelector("#eu-container_container").classList.add("position4");
+//document.querySelector("#missile_container").classList.add("position5");  
+}
+
 function start() {
   console.log("JavaScript kører!");
 
   resetLives();
   resetPoints();
   showGameScreen();
+  resetPositions();
+
+  // Stop musik fra Level Comlete og Game Over
+  document.querySelector("#sound_gameOver").pause();
+  document.querySelector("#sound_levelComplete").pause();
 
   // Start baggrundsmusik
-  document.querySelector("#sound_war").play();   
+  document.querySelector("#sound_war").play();
+
+  // start timer
+  startTimer();
 
   // nulstil point og liv
   points = 0;
@@ -74,9 +106,7 @@ function start() {
   document.querySelector("#us-container_container").classList.add("position2");
   document.querySelector("#eu-container_container").classList.add("falling");
   document.querySelector("#eu-container_container").classList.add("position3");
-  document
-    .querySelector("#missile_container")
-    .classList.add("falling-diagonal");
+  document.querySelector("#missile_container").classList.add("falling-diagonal");
   document.querySelector("#missile_container").classList.add("position5");
   document.querySelector("#emergency-kit_container").classList.add("falling");
   document.querySelector("#emergency-kit_container").classList.add("position4");
@@ -390,11 +420,11 @@ function incrementPoints() {
   points++;
   console.log("har nu " + points + " point");
   displayPoints();
-  if (points >= 50) {
-    levelComplete();
-  } else {
-    showDecrementedLives;
-  }
+  // if (points >= 50) {
+    // levelComplete();
+  // } else {
+    // showDecrementedLives;
+  // }
 }
 
 function displayPoints() {
@@ -445,6 +475,27 @@ function levelComplete() {
   stopGame();
 }
 
+function startTimer() {
+  // Sæt timer-animationen (shrink) i gang ved at tilføje klassen shrink til time_sprite
+  document.querySelector("#time_sprite").classList.add("shrink");
+
+  // Tilføj en eventlistener som lytter efter at animationen er færdig (animationend) og kalder funktionen timeIsUp
+  document
+    .querySelector("#time_sprite")
+    .addEventListener("animationend", timeIsUp);
+}
+
+function timeIsUp() {
+  console.log("Tiden er gået!");
+
+  if (points >= 50) {
+    levelComplete();
+  } else {
+    gameOver();
+  }
+}
+
+
 function stopGame() {
   // Stop animationer
   document.querySelector("#sound_war").pause();
@@ -493,4 +544,11 @@ function stopGame() {
   document
     .querySelector("#emergency-kit_container")
     .removeEventListener("animationiteration", incrementPoints);
+
+  // Stop og nulstil lyde, fx baggrundsmusik
+  document.querySelector("#sound_war").pause();
+  document.querySelector("#sound_war").currentTime = 0;
+
+  // nulstil timer - fjern animationen fra timeren (fjern klassen shrink fra time_sprite)
+  document.querySelector("#time_sprite").classList.remove("shrink");
 }
