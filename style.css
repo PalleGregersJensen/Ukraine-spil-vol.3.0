@@ -103,7 +103,7 @@ h2 {
 #missile_container {
     position: absolute;
     width: 3%;
-    top: 0;
+    /* top: 0; */
     left: 30vw;
     rotate: 155deg;
 }
@@ -125,17 +125,17 @@ h2 {
 /*positions*/
 
 .position1{
-    top: 0;
+    top: -10%;
     left: 10vw;
 }
 
 .position2{
-    top: 0;
+    top: -20%;
     left: 40vw;
 }
 
 .position3{
-    top: 0;
+    top: -5;
     left: 70vw;
 }
 
@@ -145,7 +145,7 @@ h2 {
 }
 
 .position5 {
-    top: 0;
+    top: -20;
     left: 0vw;
 }
 
@@ -227,13 +227,64 @@ h2 {
     }
 
     100% {
-        transform: translate(0, 56.25vw);
+        transform: translate(0, 86.25vw);
+    }
+}
+
+.falling1 {
+    animation-name: falling1;
+    animation-duration: 3.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes falling1 {
+    0% {
+        transform: translate(0, -100%);
+    }
+
+    100% {
+        transform: translate(0, 86.25vw);
+    }
+}
+
+.falling2 {
+    animation-name: falling2;
+    animation-duration: 4.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes falling2 {
+    0% {
+        transform: translate(0, -100%);
+    }
+
+    100% {
+        transform: translate(0, 86.25vw);
+    }
+}
+
+.falling3 {
+    animation-name: falling3;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes falling3 {
+    0% {
+        transform: translate(0, -100%);
+    }
+
+    100% {
+        transform: translate(0, 86.25vw);
     }
 }
 
 .falling-diagonal {
   animation-name: falling-diagonal;
-  animation-duration: 5s;
+  animation-duration: 3s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   

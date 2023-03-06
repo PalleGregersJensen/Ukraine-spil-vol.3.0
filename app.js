@@ -46,29 +46,29 @@ function resetPoints() {
   displayPoints();
 }
 
-function resetPositions() {
-  console.log ("reset positions")
-document
-  .querySelector("#paratrooper_container")
-  .classList.remove("falling", "position1", "position2", "position3", "position4");
-document
-  .querySelector("#emergency-kit_container")
-  .classList.remove("falling","position1","position2","position3","position4");
-document
-  .querySelector("#us-container_container")
-  .classList.remove("falling", "position1", "position2", "position3", "position4");
-document
-  .querySelector("#eu-container_container")
-  .classList.remove("falling", "position1", "position2", "position3", "position4");
-document
-  .querySelector("#missile_container")
-  .classList.remove("falling-diagonal", "position5", "position6");
+// function resetPositions() {
+  // console.log ("reset positions")
+// document
+  // .querySelector("#paratrooper_container")
+  // .classList.remove("falling", "position1", "position2", "position3", "position4");
+// document
+  // .querySelector("#emergency-kit_container")
+  // .classList.remove("falling","position1","position2","position3","position4");
+// document
+  // .querySelector("#us-container_container")
+  // .classList.remove("falling", "position1", "position2", "position3", "position4");
+// document
+  // .querySelector("#eu-container_container")
+  // .classList.remove("falling", "position1", "position2", "position3", "position4");
+// document
+  // .querySelector("#missile_container")
+  // .classList.remove("falling-diagonal", "position5", "position6");
 //document.querySelector("#paratrooper_container").classList.add("position1");
 //document.querySelector("#emergency-kit_container").classList.add("position2");
 //document.querySelector("#us-container_container").classList.add("position3");
 //document.querySelector("#eu-container_container").classList.add("position4");
 //document.querySelector("#missile_container").classList.add("position5");  
-}
+// }
 
 // function animationsRestart() {
   // console.log("animations restart");
@@ -99,7 +99,7 @@ function start() {
   resetLives();
   resetPoints();
   showGameScreen();
-  resetPositions();
+  // resetPositions();
 
   // Stop musik fra Level Comlete og Game Over
   document.querySelector("#sound_gameOver").pause();
@@ -118,19 +118,39 @@ function start() {
   // skjul startskærm
   document.querySelector("#start").classList.add("hidden");
 
+  //Nulstil animationer
+document
+  .querySelector("#paratrooper_container")
+  .classList.remove("falling1", "position1", "position2", "position3", "position4");
+document
+  .querySelector("#emergency-kit_container")
+  .classList.remove("falling3","position1","position2","position3","position4");
+document
+  .querySelector("#us-container_container")
+  .classList.remove("falling", "position1", "position2", "position3", "position4");
+document
+  .querySelector("#eu-container_container")
+  .classList.remove("falling2", "position1", "position2", "position3", "position4");
+document
+  .querySelector("#missile_container")
+    .classList.remove("falling-diagonal", "position5", "position6");
+document.querySelector("#paratrooper_container").offsetWidth;
+document.querySelector("#emergency-kit_container").offsetWidth;
+document.querySelector("#us-container_container").offsetWidth;
+document.querySelector("#eu-container_container").offsetWidth;
+document.querySelector("#missile_container").offsetWidth;  
+
   // Start animationer
-  document.querySelector("#paratrooper_container").classList.add("falling");
-  document.querySelector("#paratrooper_container").classList.add("position1");
+  document.querySelector("#paratrooper_container").classList.add("falling1");
+  document.querySelector("#paratrooper_container").classList.add("position4");
   document.querySelector("#us-container_container").classList.add("falling");
   document.querySelector("#us-container_container").classList.add("position2");
-  document.querySelector("#eu-container_container").classList.add("falling");
+  document.querySelector("#eu-container_container").classList.add("falling2");
   document.querySelector("#eu-container_container").classList.add("position3");
-  document
-    .querySelector("#missile_container")
-    .classList.add("falling-diagonal");
+  document.querySelector("#missile_container").classList.add("falling-diagonal");
   document.querySelector("#missile_container").classList.add("position5");
-  document.querySelector("#emergency-kit_container").classList.add("falling");
-  document.querySelector("#emergency-kit_container").classList.add("position4");
+  document.querySelector("#emergency-kit_container").classList.add("falling3");
+  document.querySelector("#emergency-kit_container").classList.add("position1");
 
   //Mist liv, hvis der ikke klikkes på missile eller paratrooper
   document
@@ -221,9 +241,9 @@ function paratrooperGone() {
   document.querySelector("#paratrooper_container").classList.remove("paused");
 
   // genstart falling animation
-  document.querySelector("#paratrooper_container").classList.remove("falling");
+  document.querySelector("#paratrooper_container").classList.remove("falling1");
   document.querySelector("#paratrooper_container").offsetWidth;
-  document.querySelector("#paratrooper_container").classList.add("falling");
+  document.querySelector("#paratrooper_container").classList.add("falling1");
   document
     .querySelector("#paratrooper_container")
     .classList.remove("position1", "position2", "position3", "position4");
