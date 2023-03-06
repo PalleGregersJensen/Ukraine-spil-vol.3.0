@@ -26,21 +26,17 @@ function showStartScreen() {
 }
 
 function resetLives() {
+  console.log("Reset lives")
   // sæt lives til 3
   lives = 3;
-  //nulstil visning af liv (hjerte vi ser)
-  document
-    .querySelector("#ukraine-flag1")
-    .classList.remove("ukraine_flag_no_visibility");
-  document
-    .querySelector("#ukraine-flag2")
-    .classList.remove("ukraine_flag_no_visibility");
-  document
-    .querySelector("#ukraine-flag3")
-    .classList.remove("ukraine_flag_no_visibility");
-  document.querySelector("#ukraine-flag1").classList.add("ukraine-flag");
-  document.querySelector("#ukraine-flag2").classList.add("ukraine-flag");
-  document.querySelector("#ukraine-flag3").classList.add("ukraine-flag");
+  //nulstil visning af liv (flag vi ser)
+  document.querySelector("#ukraine-flag1").classList.remove("broken_heart");
+  document.querySelector("#ukraine-flag2").classList.remove("broken_heart");
+  document.querySelector("#ukraine-flag3").classList.remove("broken_heart");
+  document.querySelector("#ukraine-flag1").classList.add("active_heart");
+  document.querySelector("#ukraine-flag2").classList.add("active_heart");
+  document.querySelector("#ukraine-flag3").classList.add("active_heart");
+  console.log("reset lives 2")
 }
 
 function resetPoints() {
@@ -74,6 +70,29 @@ document
 //document.querySelector("#missile_container").classList.add("position5");  
 }
 
+// function animationsRestart() {
+  // console.log("animations restart");
+  // const coin = this;
+
+  // genstart falling animation
+  // coin.classList.remove("falling");
+  // coin.offsetWidth;
+  // coin.classList.add("falling");
+
+  // fjern alle positioner
+  // coin.classList.remove(
+    // "position1",
+    // "position2",
+    // "position3",
+    // "position4",
+    // "position5"
+  // );
+
+  // sæt position til en ny klasse
+  // const p = Math.ceil(Math.random() * 5);
+  // coin.classList.add(`position${p}`);
+// }
+
 function start() {
   console.log("JavaScript kører!");
 
@@ -106,7 +125,9 @@ function start() {
   document.querySelector("#us-container_container").classList.add("position2");
   document.querySelector("#eu-container_container").classList.add("falling");
   document.querySelector("#eu-container_container").classList.add("position3");
-  document.querySelector("#missile_container").classList.add("falling-diagonal");
+  document
+    .querySelector("#missile_container")
+    .classList.add("falling-diagonal");
   document.querySelector("#missile_container").classList.add("position5");
   document.querySelector("#emergency-kit_container").classList.add("falling");
   document.querySelector("#emergency-kit_container").classList.add("position4");
@@ -146,6 +167,20 @@ function start() {
   document
     .querySelector("#emergency-kit_container")
     .addEventListener("click", clickEmergencyKit);
+
+  // Registrer når bunden rammes
+  // document
+    // .querySelector("#paratrooper_container")
+    // .addEventListener("animationiteration", animationsRestart);
+  // document
+    // .querySelector("#eu-container_container")
+    // .addEventListener("animationiteration", animationsRestart);
+  // document
+    // .querySelector("#us-container_container")
+    // .addEventListener("animationiteration", animationsRestart);
+  // document
+    // .querySelector("#emergency-kit_container")
+    // .addEventListener("animationiteration", animationsRestart);
 }
   
   
@@ -429,7 +464,7 @@ function incrementPoints() {
 
 function displayPoints() {
   console.log("vis point");
-  document.querySelector("#coin_count").textContent = points;
+  document.querySelector("#point_count").textContent = points;
 }
 
 function decrementLives() {

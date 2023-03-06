@@ -175,12 +175,12 @@ h2 {
     gap: 0.1em;
 }
 
-#coin_count {
+#point_count {
     white-space: nowrap;
     text-align: right;
 }
 
-#coin_count {
+#point_count {
     width: 1em;
 }
 
@@ -196,10 +196,12 @@ h2 {
 
 .active_heart {
     filter: drop-shadow(0 0 2px yellow);
+    opacity: 1.0;
 }
 
 .broken_heart {
     filter: grayscale(75%) blur(0.5px);
+    opacity: 0.2;
 }
 
 .ukraine-flag {
