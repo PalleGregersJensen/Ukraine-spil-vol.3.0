@@ -498,11 +498,11 @@ function decrementLives() {
   }
 }
 
-function incrementLives() {
-  console.log("få et liv");
-  lives++;
-  showIncrementedLives();
-}
+// function incrementLives() {
+  // console.log("få et liv");
+  // lives++;
+  // showIncrementedLives();
+// }
 
 function showDecrementedLives() {
   document
