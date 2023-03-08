@@ -8,7 +8,9 @@ function ready() {
   console.log("JavaScript ready!");
   document.querySelector("#btn_start").addEventListener("click", start);
   document.querySelector("#btn_restart").addEventListener("click", start);
-  document.querySelector("#btn_go_to_start").addEventListener("click", showStartScreen);
+  document
+    .querySelector("#btn_go_to_start")
+    .addEventListener("click", showStartScreen);
 }
 
 function showGameScreen() {
@@ -26,7 +28,7 @@ function showStartScreen() {
 }
 
 function resetLives() {
-  console.log("Reset lives")
+  console.log("Reset lives");
   // sæt lives til 3
   lives = 3;
   //nulstil visning af liv (flag vi ser)
@@ -36,7 +38,7 @@ function resetLives() {
   document.querySelector("#ukraine-flag1").classList.add("active_heart");
   document.querySelector("#ukraine-flag2").classList.add("active_heart");
   document.querySelector("#ukraine-flag3").classList.add("active_heart");
-  console.log("reset lives 2")
+  console.log("reset lives 2");
 }
 
 function resetPoints() {
@@ -47,50 +49,50 @@ function resetPoints() {
 }
 
 // function resetPositions() {
-  // console.log ("reset positions")
+// console.log ("reset positions")
 // document
-  // .querySelector("#paratrooper_container")
-  // .classList.remove("falling", "position1", "position2", "position3", "position4");
+// .querySelector("#paratrooper_container")
+// .classList.remove("falling", "position1", "position2", "position3", "position4");
 // document
-  // .querySelector("#emergency-kit_container")
-  // .classList.remove("falling","position1","position2","position3","position4");
+// .querySelector("#emergency-kit_container")
+// .classList.remove("falling","position1","position2","position3","position4");
 // document
-  // .querySelector("#us-container_container")
-  // .classList.remove("falling", "position1", "position2", "position3", "position4");
+// .querySelector("#us-container_container")
+// .classList.remove("falling", "position1", "position2", "position3", "position4");
 // document
-  // .querySelector("#eu-container_container")
-  // .classList.remove("falling", "position1", "position2", "position3", "position4");
+// .querySelector("#eu-container_container")
+// .classList.remove("falling", "position1", "position2", "position3", "position4");
 // document
-  // .querySelector("#missile_container")
-  // .classList.remove("falling-diagonal", "position5", "position6");
+// .querySelector("#missile_container")
+// .classList.remove("falling-diagonal", "position5", "position6");
 //document.querySelector("#paratrooper_container").classList.add("position1");
 //document.querySelector("#emergency-kit_container").classList.add("position2");
 //document.querySelector("#us-container_container").classList.add("position3");
 //document.querySelector("#eu-container_container").classList.add("position4");
-//document.querySelector("#missile_container").classList.add("position5");  
+//document.querySelector("#missile_container").classList.add("position5");
 // }
 
 // function animationsRestart() {
-  // console.log("animations restart");
-  // const coin = this;
+// console.log("animations restart");
+// const coin = this;
 
-  // genstart falling animation
-  // coin.classList.remove("falling");
-  // coin.offsetWidth;
-  // coin.classList.add("falling");
+// genstart falling animation
+// coin.classList.remove("falling");
+// coin.offsetWidth;
+// coin.classList.add("falling");
 
-  // fjern alle positioner
-  // coin.classList.remove(
-    // "position1",
-    // "position2",
-    // "position3",
-    // "position4",
-    // "position5"
-  // );
+// fjern alle positioner
+// coin.classList.remove(
+// "position1",
+// "position2",
+// "position3",
+// "position4",
+// "position5"
+// );
 
-  // sæt position til en ny klasse
-  // const p = Math.ceil(Math.random() * 5);
-  // coin.classList.add(`position${p}`);
+// sæt position til en ny klasse
+// const p = Math.ceil(Math.random() * 5);
+// coin.classList.add(`position${p}`);
 // }
 
 function start() {
@@ -119,26 +121,50 @@ function start() {
   document.querySelector("#start").classList.add("hidden");
 
   //Nulstil animationer
-document
-  .querySelector("#paratrooper_container")
-  .classList.remove("falling1", "position1", "position2", "position3", "position4");
-document
-  .querySelector("#emergency-kit_container")
-  .classList.remove("falling3","position1","position2","position3","position4");
-document
-  .querySelector("#us-container_container")
-  .classList.remove("falling", "position1", "position2", "position3", "position4");
-document
-  .querySelector("#eu-container_container")
-  .classList.remove("falling2", "position1", "position2", "position3", "position4");
-document
-  .querySelector("#missile_container")
+  document
+    .querySelector("#paratrooper_container")
+    .classList.remove(
+      "falling1",
+      "position1",
+      "position2",
+      "position3",
+      "position4"
+    );
+  document
+    .querySelector("#emergency-kit_container")
+    .classList.remove(
+      "falling3",
+      "position1",
+      "position2",
+      "position3",
+      "position4"
+    );
+  document
+    .querySelector("#us-container_container")
+    .classList.remove(
+      "falling",
+      "position1",
+      "position2",
+      "position3",
+      "position4"
+    );
+  document
+    .querySelector("#eu-container_container")
+    .classList.remove(
+      "falling2",
+      "position1",
+      "position2",
+      "position3",
+      "position4"
+    );
+  document
+    .querySelector("#missile_container")
     .classList.remove("falling-diagonal", "position5", "position6");
-document.querySelector("#paratrooper_container").offsetWidth;
-document.querySelector("#emergency-kit_container").offsetWidth;
-document.querySelector("#us-container_container").offsetWidth;
-document.querySelector("#eu-container_container").offsetWidth;
-document.querySelector("#missile_container").offsetWidth;  
+  document.querySelector("#paratrooper_container").offsetWidth;
+  document.querySelector("#emergency-kit_container").offsetWidth;
+  document.querySelector("#us-container_container").offsetWidth;
+  document.querySelector("#eu-container_container").offsetWidth;
+  document.querySelector("#missile_container").offsetWidth;
 
   // Start animationer
   document.querySelector("#paratrooper_container").classList.add("falling1");
@@ -147,7 +173,9 @@ document.querySelector("#missile_container").offsetWidth;
   document.querySelector("#us-container_container").classList.add("position2");
   document.querySelector("#eu-container_container").classList.add("falling2");
   document.querySelector("#eu-container_container").classList.add("position3");
-  document.querySelector("#missile_container").classList.add("falling-diagonal");
+  document
+    .querySelector("#missile_container")
+    .classList.add("falling-diagonal");
   document.querySelector("#missile_container").classList.add("position5");
   document.querySelector("#emergency-kit_container").classList.add("falling3");
   document.querySelector("#emergency-kit_container").classList.add("position1");
@@ -190,20 +218,19 @@ document.querySelector("#missile_container").offsetWidth;
 
   // Registrer når bunden rammes
   // document
-    // .querySelector("#paratrooper_container")
-    // .addEventListener("animationiteration", animationsRestart);
+  // .querySelector("#paratrooper_container")
+  // .addEventListener("animationiteration", animationsRestart);
   // document
-    // .querySelector("#eu-container_container")
-    // .addEventListener("animationiteration", animationsRestart);
+  // .querySelector("#eu-container_container")
+  // .addEventListener("animationiteration", animationsRestart);
   // document
-    // .querySelector("#us-container_container")
-    // .addEventListener("animationiteration", animationsRestart);
+  // .querySelector("#us-container_container")
+  // .addEventListener("animationiteration", animationsRestart);
   // document
-    // .querySelector("#emergency-kit_container")
-    // .addEventListener("animationiteration", animationsRestart);
+  // .querySelector("#emergency-kit_container")
+  // .addEventListener("animationiteration", animationsRestart);
 }
-  
-  
+
 function clickParatrooper() {
   console.log("Click paratrooper");
   document.querySelector("#sound_gunshot").currentTime = 0;
@@ -353,10 +380,14 @@ function euContainerGone() {
   document.querySelector("#eu-container_container").classList.remove("falling");
   document.querySelector("#eu-container_container").offsetWidth;
   document.querySelector("#eu-container_container").classList.add("falling");
-  document.querySelector("#eu-container_container").classList.remove("position1", "position2", "position3", "position4");
+  document
+    .querySelector("#eu-container_container")
+    .classList.remove("position1", "position2", "position3", "position4");
 
   let pos = Math.floor(Math.random() * 4) + 1;
-  document.querySelector("#eu-container_container").classList.add("position" + pos);
+  document
+    .querySelector("#eu-container_container")
+    .classList.add("position" + pos);
 
   // gør det muligt at klikke på eu-container igen
   document
@@ -400,10 +431,16 @@ function missileGone() {
   document.querySelector("#missile_container").classList.remove("paused");
 
   // genstart falling-diagonal animation
-  document.querySelector("#missile_container").classList.remove("falling-diagonal");
+  document
+    .querySelector("#missile_container")
+    .classList.remove("falling-diagonal");
   document.querySelector("#missile_container").offsetWidth;
-  document.querySelector("#missile_container").classList.add("falling-diagonal");
-  document.querySelector("#missile_container").classList.remove("position5", "position6");
+  document
+    .querySelector("#missile_container")
+    .classList.add("falling-diagonal");
+  document
+    .querySelector("#missile_container")
+    .classList.remove("position5", "position6");
 
   let pos = Math.floor(Math.random() * 2) + 5;
   document.querySelector("#missile_container").classList.add("position" + pos);
@@ -476,9 +513,9 @@ function incrementPoints() {
   console.log("har nu " + points + " point");
   displayPoints();
   // if (points >= 50) {
-    // levelComplete();
+  // levelComplete();
   // } else {
-    // showDecrementedLives;
+  // showDecrementedLives;
   // }
 }
 
@@ -499,9 +536,9 @@ function decrementLives() {
 }
 
 // function incrementLives() {
-  // console.log("få et liv");
-  // lives++;
-  // showIncrementedLives();
+// console.log("få et liv");
+// lives++;
+// showIncrementedLives();
 // }
 
 function showDecrementedLives() {
@@ -549,7 +586,6 @@ function timeIsUp() {
     gameOver();
   }
 }
-
 
 function stopGame() {
   // Stop animationer
